@@ -2,12 +2,12 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>ResourceLoader</id>
-    <version>1.0.1-pre1</version>
+    <version>1.0.2</version>
     <title>ResourceLoader</title>
     <authors>Thomas Galliker</authors>
     <licenseUrl>http://opensource.org/licenses/Apache-2.0</licenseUrl>
     <projectUrl>https://nuget.org/packages/ResourceLoader</projectUrl>
-    <iconUrl>https://nuget.org/Content/Images/packageDefaultIcon-50x50.png</iconUrl>
+    <iconUrl>https://raw.githubusercontent.com/thomasgalliker/ResourceLoader/master/Images/resourceloader.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <summary>ResourceLoader is a utility for reading embedded resources from assemblies.</summary>
     <description>ResourceLoader is a utility for reading embedded resources from assemblies.</description>

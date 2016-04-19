@@ -9,14 +9,13 @@ namespace ResourceLoader
     /// <summary>
     ///     Utility class that can be used to find and load embedded resources into memory.
     /// </summary>
-    // TODO GATH: https://github.com/MvvmCross/MvvmCross-Plugins/tree/master/ResourceLoader
     public static class ResourceLoader // TODO GATH: Introduce interface here and register in IoC
     {
         /// <summary>
         ///     Attempts to find and return the given resource from within the specified assembly.
         /// </summary>
         /// <returns>The embedded resource stream.</returns>
-        /// <param name="assembly">Assembly.</param>
+        /// <param name="assembly">The assembly which embeds the resource.</param>
         /// <param name="resourceFileName">Resource file name.</param>
         public static Stream GetEmbeddedResourceStream(Assembly assembly, string resourceFileName)
         {
@@ -60,7 +59,7 @@ namespace ResourceLoader
         ///     Attempts to find and return the given resource from within the specified assembly.
         /// </summary>
         /// <returns>The embedded resource as a string.</returns>
-        /// <param name="assembly">Assembly.</param>
+        /// <param name="assembly">The assembly which embeds the resource.</param>
         /// <param name="resourceFileName">Resource file name.</param>
         public static string GetEmbeddedResourceString(Assembly assembly, string resourceFileName)
         {
