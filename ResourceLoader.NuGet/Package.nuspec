@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>ResourceLoader</id>
+    <version>1.0.1-pre1</version>
+    <title>ResourceLoader</title>
+    <authors>Thomas Galliker</authors>
+    <licenseUrl>http://opensource.org/licenses/Apache-2.0</licenseUrl>
+    <projectUrl>https://nuget.org/packages/ResourceLoader</projectUrl>
+    <iconUrl>https://nuget.org/Content/Images/packageDefaultIcon-50x50.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <summary>ResourceLoader is a utility for reading embedded resources from assemblies.</summary>
+    <description>ResourceLoader is a utility for reading embedded resources from assemblies.</description>
+    <tags>
+      ResourceLoader embedded resource assembly dll
+      windows phone winphone wp8 wpa81 win81 windowsphone android xamarin.forms xamarin.ios ios monoandroid monodroid monotouch
+    </tags>
+    <releaseNotes>
+      - Initial release
+    </releaseNotes>
+    <copyright>Copyright 2016</copyright>
+    <language>en-US</language>
+    <dependencies>
+    </dependencies>
+  </metadata>
+  <files>
+    <!--PCL-->
+    <file src="..\ResourceLoader\bin\Release\ResourceLoader.dll" target="lib\portable-net45+dnxcore50+wp80+wpa81+win81+netcore45+monoandroid10+monotouch10+xamarin.ios10\ResourceLoader.dll" />
+    <file src="..\ResourceLoader\bin\Release\ResourceLoader.pdb" target="lib\portable-net45+dnxcore50+wp80+wpa81+win81+netcore45+monoandroid10+monotouch10+xamarin.ios10\ResourceLoader.pdb" />
+    <file src="..\ResourceLoader\bin\Release\ResourceLoader.xml" target="lib\portable-net45+dnxcore50+wp80+wpa81+win81+netcore45+monoandroid10+monotouch10+xamarin.ios10\ResourceLoader.xml" />
+
+    <file src="tools\init.ps1" target="tools\init.ps1" />
+    <file src="tools\install.ps1" target="tools\install.ps1" />
+    <file src="tools\uninstall.ps1" target="tools\uninstall.ps1" />
+  </files>
+</package>
