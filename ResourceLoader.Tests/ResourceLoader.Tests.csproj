@@ -6,7 +6,7 @@
     <ProjectGuid>{8146AB24-C2E9-4AAA-9BD0-E9E4E402C612}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ResourceLoader.Tests</RootNamespace>
+    <RootNamespace>System.Reflection.Tests</RootNamespace>
     <AssemblyName>ResourceLoader.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

@@ -1,23 +1,30 @@
-﻿
-using System;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
-using System.Reflection;
+using System.Threading;
 
-namespace ResourceLoader
+namespace System.Reflection
 {
     /// <summary>
-    ///     Utility class that can be used to find and load embedded resources into memory.
+    ///     Utility that can be used to find and load embedded resources into memory.
     /// </summary>
-    public static class ResourceLoader // TODO GATH: Introduce interface here and register in IoC
+    public class ResourceLoader : IResourceLoader
     {
-        /// <summary>
-        ///     Attempts to find and return the given resource from within the specified assembly.
-        /// </summary>
-        /// <returns>The embedded resource stream.</returns>
-        /// <param name="assembly">The assembly which embeds the resource.</param>
-        /// <param name="resourceFileName">Resource file name.</param>
-        public static Stream GetEmbeddedResourceStream(Assembly assembly, string resourceFileName)
+        static readonly Lazy<IResourceLoader> Implementation = new Lazy<IResourceLoader>(CreateResourceLoader, LazyThreadSafetyMode.PublicationOnly);
+
+        public static IResourceLoader Current
+        {
+            get
+            {
+                return Implementation.Value;
+            }
+        }
+
+        static IResourceLoader CreateResourceLoader()
+        {
+            return new ResourceLoader();
+        }
+
+        public Stream GetEmbeddedResourceStream(Assembly assembly, string resourceFileName)
         {
             var resourceNames = assembly.GetManifestResourceNames();
 
@@ -38,15 +45,9 @@ namespace ResourceLoader
             return assembly.GetManifestResourceStream(resourcePaths.Single());
         }
 
-        /// <summary>
-        ///     Attempts to find and return the given resource from within the specified assembly.
-        /// </summary>
-        /// <returns>The embedded resource as a byte array.</returns>
-        /// <param name="assembly">Assembly.</param>
-        /// <param name="resourceFileName">Resource file name.</param>
-        public static byte[] GetEmbeddedResourceBytes(Assembly assembly, string resourceFileName)
+        public byte[] GetEmbeddedResourceBytes(Assembly assembly, string resourceFileName)
         {
-            var stream = GetEmbeddedResourceStream(assembly, resourceFileName);
+            var stream = this.GetEmbeddedResourceStream(assembly, resourceFileName);
 
             using (var memoryStream = new MemoryStream())
             {
@@ -55,15 +56,9 @@ namespace ResourceLoader
             }
         }
 
-        /// <summary>
-        ///     Attempts to find and return the given resource from within the specified assembly.
-        /// </summary>
-        /// <returns>The embedded resource as a string.</returns>
-        /// <param name="assembly">The assembly which embeds the resource.</param>
-        /// <param name="resourceFileName">Resource file name.</param>
-        public static string GetEmbeddedResourceString(Assembly assembly, string resourceFileName)
+        public string GetEmbeddedResourceString(Assembly assembly, string resourceFileName)
         {
-            var stream = GetEmbeddedResourceStream(assembly, resourceFileName);
+            var stream = this.GetEmbeddedResourceStream(assembly, resourceFileName);
 
             using (var streamReader = new StreamReader(stream))
             {

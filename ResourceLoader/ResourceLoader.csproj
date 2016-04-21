@@ -8,7 +8,7 @@
     <ProjectGuid>{00C0CF40-4DD0-480A-B87F-7F05F38AEFF8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ResourceLoader</RootNamespace>
+    <RootNamespace>System.Reflection</RootNamespace>
     <AssemblyName>ResourceLoader</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
@@ -38,6 +38,7 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IResourceLoader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResourceLoader.cs" />
   </ItemGroup>
