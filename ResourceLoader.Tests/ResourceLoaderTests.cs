@@ -1,4 +1,6 @@
-﻿using FluentAssertions;
+﻿using System.Reflection.Exceptions;
+
+using FluentAssertions;
 
 using Xunit;
 
@@ -54,7 +56,7 @@ namespace System.Reflection.Tests
         }
 
         [Fact]
-        public void ShouldThrowNotFoundExceptionWhenGetEmbeddedResourceString()
+        public void ShouldThrowResourceNotFoundExceptionWhenGetEmbeddedResourceString()
         {
             // Arrange
             IResourceLoader resourceLoader = new ResourceLoader();
@@ -65,7 +67,22 @@ namespace System.Reflection.Tests
             Action action = () => resourceLoader.GetEmbeddedResourceString(testAssembly, testFile);
 
             // Assert
-            action.ShouldThrow<Exception>();
+            action.ShouldThrow<ResourceNotFoundException>();
+        }
+
+        [Fact]
+        public void ShouldThrowMultipleResourcesFoundExceptionWhenGetEmbeddedResourceString()
+        {
+            // Arrange
+            IResourceLoader resourceLoader = new ResourceLoader();
+            var testAssembly = this.GetType().Assembly;
+            var testFile = ".xml";
+
+            // Act
+            Action action = () => resourceLoader.GetEmbeddedResourceString(testAssembly, testFile);
+
+            // Assert
+            action.ShouldThrow<MultipleResourcesFoundException>();
         }
 
         [Fact]

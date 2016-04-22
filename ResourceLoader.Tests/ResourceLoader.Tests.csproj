@@ -87,6 +87,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\XMLFile1.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\XMLFile2.xml" />
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
