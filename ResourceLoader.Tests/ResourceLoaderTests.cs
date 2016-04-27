@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Reflection.Exceptions;
+﻿using System.Reflection.Exceptions;
 using System.Reflection.Tests.Extensions;
 using System.Text;
 
