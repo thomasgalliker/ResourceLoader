@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Text;
 
 namespace System.Reflection
 {
@@ -26,6 +27,7 @@ namespace System.Reflection
         /// <returns>The embedded resource as a string.</returns>
         /// <param name="assembly">The assembly which embeds the resource.</param>
         /// <param name="resourceFileName">Resource file name.</param>
-        string GetEmbeddedResourceString(Assembly assembly, string resourceFileName);
+        /// <param name="encoding">Character encoding. Default is UTF8.</param>
+        string GetEmbeddedResourceString(Assembly assembly, string resourceFileName, Encoding encoding = null);
     }
 }

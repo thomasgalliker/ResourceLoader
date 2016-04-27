@@ -72,6 +72,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResourceLoaderTests.cs" />
   </ItemGroup>
@@ -88,7 +89,12 @@
     <EmbeddedResource Include="Resources\XMLFile1.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\XMLFile2.xml" />
+    <EmbeddedResource Include="Resources\XMLFile1_ISO-8859-1.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\XMLFile1_UTF8.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

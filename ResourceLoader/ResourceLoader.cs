@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Linq;
 using System.Reflection.Exceptions;
+using System.Text;
 using System.Threading;
 
 namespace System.Reflection
@@ -55,11 +56,13 @@ namespace System.Reflection
             }
         }
 
-        public string GetEmbeddedResourceString(Assembly assembly, string resourceFileName)
+        public string GetEmbeddedResourceString(Assembly assembly, string resourceFileName, Encoding encoding = null)
         {
             var stream = this.GetEmbeddedResourceStream(assembly, resourceFileName);
 
-            using (var streamReader = new StreamReader(stream))
+            encoding = encoding ?? Encoding.UTF8;
+
+            using (var streamReader = new StreamReader(stream, encoding))
             {
                 return streamReader.ReadToEnd();
             }

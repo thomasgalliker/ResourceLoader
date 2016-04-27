@@ -1,4 +1,7 @@
-﻿using System.Reflection.Exceptions;
+﻿using System.Linq;
+using System.Reflection.Exceptions;
+using System.Reflection.Tests.Extensions;
+using System.Text;
 
 using FluentAssertions;
 
@@ -52,7 +55,47 @@ namespace System.Reflection.Tests
 
             // Assert
             embeddedResourceString.Should().NotBeNull();
-            embeddedResourceString.Should().Be(testContent);
+            embeddedResourceString.FirstLine().Should().Be(testContent);
+        }
+
+        [Fact]
+        public void ShouldGetEmbeddedResourceStringWithEncoding()
+        {
+            // Arrange
+            IResourceLoader resourceLoader = new ResourceLoader();
+            var testAssembly = this.GetType().Assembly;
+            var testFile = "XMLFile1_ISO-8859-1.xml";
+            var testContent = @"<?xml version=""1.0"" encoding=""iso-8859-1"" ?>";
+            var encoding = Encoding.GetEncoding("ISO-8859-1");
+
+            // Act
+            var embeddedResourceString = resourceLoader.GetEmbeddedResourceString(testAssembly, testFile, encoding);
+
+            // Assert
+            embeddedResourceString.Should().NotBeNull();
+            embeddedResourceString.FirstLine().Should().Be(testContent);
+            embeddedResourceString.Line(2).Should().Contain("®");
+            embeddedResourceString.Line(2).Should().NotContain("�");
+        }
+
+        [Fact]
+        public void ShouldGetEmbeddedResourceStringWithEncodingMismatch()
+        {
+            // Arrange
+            IResourceLoader resourceLoader = new ResourceLoader();
+            var testAssembly = this.GetType().Assembly;
+            var testFile = "XMLFile1_ISO-8859-1.xml";
+            var testContent = @"<?xml version=""1.0"" encoding=""iso-8859-1"" ?>";
+            var encoding = Encoding.UTF8;
+
+            // Act
+            var embeddedResourceString = resourceLoader.GetEmbeddedResourceString(testAssembly, testFile, encoding);
+
+            // Assert
+            embeddedResourceString.Should().NotBeNull();
+            embeddedResourceString.FirstLine().Should().Be(testContent);
+            embeddedResourceString.Line(2).Should().Contain("�");
+            embeddedResourceString.Line(2).Should().NotContain("®");
         }
 
         [Fact]
