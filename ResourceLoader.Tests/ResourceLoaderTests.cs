@@ -1,4 +1,5 @@
-﻿using System.Reflection.Exceptions;
+﻿using System.Linq;
+using System.Reflection.Exceptions;
 using System.Reflection.Tests.Extensions;
 using System.Text;
 
@@ -25,7 +26,22 @@ namespace System.Reflection.Tests
         }
 
         [Fact]
-        public void ShouldGetEmbeddedResourceBytes()
+        public void ShouldGetEmbeddedResourceStreams()
+        {
+            // Arrange
+            var testAssembly = this.GetType().Assembly;
+            var filePattern = "XMLFile";
+
+            // Act
+            var embeddedResourceStreams = ResourceLoader.Current.GetEmbeddedResourceStreams(testAssembly, filePattern);
+
+            // Assert
+            embeddedResourceStreams.Should().NotBeNull();
+            embeddedResourceStreams.Should().HaveCount(3);
+        }
+
+        [Fact]
+        public void ShouldGetEmbeddedResourceArra()
         {
             // Arrange
             IResourceLoader resourceLoader = new ResourceLoader();
@@ -33,11 +49,30 @@ namespace System.Reflection.Tests
             var testFile = "XMLFile1.xml";
 
             // Act
-            var embeddedResourceBytes = resourceLoader.GetEmbeddedResourceBytes(testAssembly, testFile);
+            var embeddedResourceByteArray = resourceLoader.GetEmbeddedResourceByteArray(testAssembly, testFile);
+
+            // Assert
+            embeddedResourceByteArray.Should().NotBeNull();
+            embeddedResourceByteArray.Length.Should().Be(42);
+        }
+
+        [Fact]
+        public void ShouldGetEmbeddedResourceByteArrays()
+        {
+            // Arrange
+            IResourceLoader resourceLoader = new ResourceLoader();
+            var testAssembly = this.GetType().Assembly;
+            var testFile = "XMLFile";
+
+            // Act
+            var embeddedResourceBytes = resourceLoader.GetEmbeddedResourceByteArrays(testAssembly, testFile);
 
             // Assert
             embeddedResourceBytes.Should().NotBeNull();
-            embeddedResourceBytes.Length.Should().Be(42);
+            embeddedResourceBytes.Should().HaveCount(3);
+            embeddedResourceBytes.ElementAt(0).Length.Should().Be(42);
+            embeddedResourceBytes.ElementAt(1).Length.Should().Be(349);
+            embeddedResourceBytes.ElementAt(2).Length.Should().Be(353);
         }
 
         [Fact]
@@ -46,15 +81,35 @@ namespace System.Reflection.Tests
             // Arrange
             IResourceLoader resourceLoader = new ResourceLoader();
             var testAssembly = this.GetType().Assembly;
-            var testFile = "XMLFile1.xml";
+            var filePattern = "XMLFile1.xml";
             var testContent = @"<?xml version=""1.0"" encoding=""utf-8"" ?>";
 
             // Act
-            var embeddedResourceString = resourceLoader.GetEmbeddedResourceString(testAssembly, testFile);
+            var embeddedResourceString = resourceLoader.GetEmbeddedResourceString(testAssembly, filePattern);
 
             // Assert
             embeddedResourceString.Should().NotBeNull();
             embeddedResourceString.FirstLine().Should().Be(testContent);
+        }
+
+        [Fact]
+        public void ShouldGetEmbeddedResourceStrings()
+        {
+            // Arrange
+            IResourceLoader resourceLoader = new ResourceLoader();
+            var testAssembly = this.GetType().Assembly;
+            var testFile = "XMLFile";
+
+            // Act
+            var embeddedResourceStrings = resourceLoader.GetEmbeddedResourceStrings(testAssembly, testFile);
+
+            // Assert
+            embeddedResourceStrings.Should().NotBeNull();
+            embeddedResourceStrings.Should().HaveCount(3);
+
+            embeddedResourceStrings.ElementAt(0).FirstLine().Should().Be("<?xml version=\"1.0\" encoding=\"utf-8\" ?>");
+            embeddedResourceStrings.ElementAt(1).FirstLine().Should().Be("<?xml version=\"1.0\" encoding=\"iso-8859-1\" ?>");
+            embeddedResourceStrings.ElementAt(2).FirstLine().Should().Be("<?xml version=\"1.0\" encoding=\"utf-8\" ?>");
         }
 
         [Fact]

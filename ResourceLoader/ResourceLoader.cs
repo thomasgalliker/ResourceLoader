@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection.Exceptions;
 using System.Text;
@@ -45,7 +46,18 @@ namespace System.Reflection
             return assembly.GetManifestResourceStream(resourcePaths.Single());
         }
 
-        public byte[] GetEmbeddedResourceBytes(Assembly assembly, string resourceFileName)
+        public IEnumerable<Stream> GetEmbeddedResourceStreams(Assembly assembly, string resourceFileName)
+        {
+            var resourceNames = assembly.GetManifestResourceNames();
+
+            var resourcePaths = resourceNames.Where(x => x.Contains(resourceFileName)).ToArray();
+            foreach (var resourcePath in resourcePaths)
+            {
+                yield return assembly.GetManifestResourceStream(resourcePath);
+            }
+        }
+
+        public byte[] GetEmbeddedResourceByteArray(Assembly assembly, string resourceFileName)
         {
             var stream = this.GetEmbeddedResourceStream(assembly, resourceFileName);
 
@@ -53,6 +65,20 @@ namespace System.Reflection
             {
                 stream.CopyTo(memoryStream);
                 return memoryStream.ToArray();
+            }
+        }
+
+        public IEnumerable<byte[]> GetEmbeddedResourceByteArrays(Assembly assembly, string resourceFileName)
+        {
+            var streams = this.GetEmbeddedResourceStreams(assembly, resourceFileName);
+
+            foreach (var stream in streams)
+            {
+                using (var memoryStream = new MemoryStream())
+                {
+                    stream.CopyTo(memoryStream);
+                    yield return memoryStream.ToArray();
+                }
             }
         }
 
@@ -65,6 +91,21 @@ namespace System.Reflection
             using (var streamReader = new StreamReader(stream, encoding))
             {
                 return streamReader.ReadToEnd();
+            }
+        }
+
+        public IEnumerable<string> GetEmbeddedResourceStrings(Assembly assembly, string resourceFileName, Encoding encoding = null)
+        {
+            var streams = this.GetEmbeddedResourceStreams(assembly, resourceFileName);
+
+            encoding = encoding ?? Encoding.UTF8;
+
+            foreach (var stream in streams)
+            {
+                using (var streamReader = new StreamReader(stream, encoding))
+                {
+                    yield return streamReader.ReadToEnd();
+                }
             }
         }
     }
