@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>ResourceLoader</id>
-    <version>2.0.5</version>
+    <version>2.0.6</version>
     <title>ResourceLoader</title>
     <authors>Thomas Galliker</authors>
     <licenseUrl>http://opensource.org/licenses/Apache-2.0</licenseUrl>
@@ -16,23 +16,26 @@
       windows phone winphone wp8 wpa81 win81 windowsphone android xamarin.forms xamarin.ios ios monoandroid monodroid monotouch
     </tags>
     <releaseNotes>
-      2.0.5
-      - Added new methods to IResourceLoader to find multiple resources matching the given file pattern
-      
-      2.0.3
-      - Added text encoding parameter to GetEmbeddedResourceString
-      
-      2.0.2
-      - New exception of type MultipleResourcesFoundException if more than one resource matches the given name
-      - New exception of type ResourceNotFoundException if resource could not be found
+2.0.6
+- Added assembly versioning
 
-      2.0.0
-      - Refactored to provide non-static implementation of ResourceLoader
-      - New IResourceLoader interface as abstraction for ResourceLoader
-      - Static access to IResourceLoader via ResourceLoader.Current
+2.0.5
+- Added new methods to IResourceLoader to find multiple resources matching the given file pattern
+      
+2.0.3
+- Added text encoding parameter to GetEmbeddedResourceString
+      
+2.0.2
+- New exception of type MultipleResourcesFoundException if more than one resource matches the given name
+- New exception of type ResourceNotFoundException if resource could not be found
 
-      1.0.2
-      - Initial release
+2.0.0
+- Refactored to provide non-static implementation of ResourceLoader
+- New IResourceLoader interface as abstraction for ResourceLoader
+- Static access to IResourceLoader via ResourceLoader.Current
+
+1.0.2
+- Initial release
     </releaseNotes>
     <copyright>Copyright 2016</copyright>
     <language>en-US</language>
