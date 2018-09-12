@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>67d562e0-c75f-489d-b6ee-93db53c9cde8</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>ResourceLoader</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Exceptions\MultipleResourcesFoundException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Exceptions\ResourceNotFoundException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IResourceLoader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ResourceLoader.cs" />
+  </ItemGroup>
+</Project>

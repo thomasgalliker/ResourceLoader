@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>ResourceLoader</id>
-    <version>2.0.6</version>
+    <version>3.0.0-pre1</version>
     <title>ResourceLoader</title>
     <authors>Thomas Galliker</authors>
     <licenseUrl>http://opensource.org/licenses/Apache-2.0</licenseUrl>
@@ -16,6 +16,9 @@
       windows phone winphone wp8 wpa81 win81 windowsphone android xamarin.forms xamarin.ios ios monoandroid monodroid monotouch
     </tags>
     <releaseNotes>
+3.0.0
+- Add support for .Net Standard
+
 2.0.6
 - Added assembly versioning
 
@@ -47,6 +50,11 @@
     <file src="..\ResourceLoader\bin\Release\ResourceLoader.dll" target="lib\portable-net45+dnxcore50+wp80+wpa81+win81+netcore45+monoandroid10+monotouch10+xamarin.ios10\ResourceLoader.dll" />
     <file src="..\ResourceLoader\bin\Release\ResourceLoader.pdb" target="lib\portable-net45+dnxcore50+wp80+wpa81+win81+netcore45+monoandroid10+monotouch10+xamarin.ios10\ResourceLoader.pdb" />
     <file src="..\ResourceLoader\bin\Release\ResourceLoader.xml" target="lib\portable-net45+dnxcore50+wp80+wpa81+win81+netcore45+monoandroid10+monotouch10+xamarin.ios10\ResourceLoader.xml" />
+
+    <!--Net Standard 1.0-->
+    <file src="..\ResourceLoader.NetStandard\bin\Release\netstandard1.0\ResourceLoader.dll" target="lib\netstandard1.0\ResourceLoader.dll" />
+    <file src="..\ResourceLoader.NetStandard\bin\Release\netstandard1.0\ResourceLoader.pdb" target="lib\netstandard1.0\ResourceLoader.pdb" />
+    <file src="..\ResourceLoader.NetStandard\bin\Release\netstandard1.0\ResourceLoader.deps.json" target="lib\netstandard1.0\ResourceLoader.deps.json" />
 
     <file src="tools\init.ps1" target="tools\init.ps1" />
     <file src="tools\install.ps1" target="tools\install.ps1" />
