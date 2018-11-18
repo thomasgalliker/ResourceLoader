@@ -1,4 +1,6 @@
 # ResourceLoader
+[![Version](https://img.shields.io/nuget/v/ResourceLoader.svg)](https://www.nuget.org/packages/ResourceLoader)  [![Downloads](https://img.shields.io/nuget/dt/ResourceLoader.svg)](https://www.nuget.org/packages/ResourceLoader)
+
 <img src="https://raw.githubusercontent.com/thomasgalliker/ResourceLoader/master/ResourceLoader.png" width="100" height="100" alt="ResourceLoader" align="right">
 ResourceLoader is a utility for reading embedded resources, such as XML files, images, etc. from assemblies.
 
@@ -32,4 +34,4 @@ string embeddedResourceString = ResourceLoader.Current.GetEmbeddedResourceString
 ```
 
 ### License
-This project is Copyright &copy; 2016 [Thomas Galliker](https://ch.linkedin.com/in/thomasgalliker). Free for non-commercial use. For commercial use please contact the author.
+This project is Copyright &copy; 2018 [Thomas Galliker](https://ch.linkedin.com/in/thomasgalliker). Free for non-commercial use. For commercial use please contact the author.
