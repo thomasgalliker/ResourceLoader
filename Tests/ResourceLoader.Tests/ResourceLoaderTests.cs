@@ -12,6 +12,19 @@ namespace System.Reflection.Tests
     public class ResourceLoaderTests
     {
         [Fact]
+        public void ShouldGetEmbeddedResourceNames()
+        {
+            // Arrange
+            var testAssembly = this.GetType().GetTypeInfo().Assembly;
+
+            // Act
+            var embeddedResourceNames = ResourceLoader.Current.GetEmbeddedResourceNames(testAssembly);
+
+            // Assert
+            embeddedResourceNames.Should().NotBeNull();
+        }
+        
+        [Fact]
         public void ShouldGetEmbeddedResourceStream()
         {
             // Arrange

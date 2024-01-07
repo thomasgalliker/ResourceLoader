@@ -6,6 +6,8 @@ namespace System.Reflection
 {
     public interface IResourceLoader
     {
+        IEnumerable<string> GetEmbeddedResourceNames(Assembly assembly);
+
         /// <summary>
         ///     Attempts to find and return the given resource from within the specified assembly.
         /// </summary>
