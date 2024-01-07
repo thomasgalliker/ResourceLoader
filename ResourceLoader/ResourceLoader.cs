@@ -27,6 +27,12 @@ namespace System.Reflection
             return new ResourceLoader();
         }
 
+        public IEnumerable<string> GetEmbeddedResourceNames(Assembly assembly)
+        {
+            var resourceNames = assembly.GetManifestResourceNames();
+            return resourceNames;
+        }
+
         public Stream GetEmbeddedResourceStream(Assembly assembly, string resourceFileName)
         {
             var resourceNames = assembly.GetManifestResourceNames();
