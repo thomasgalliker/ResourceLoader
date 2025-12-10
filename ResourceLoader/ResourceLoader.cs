@@ -88,7 +88,7 @@ namespace System.Reflection
             }
         }
 
-        public string GetEmbeddedResourceString(Assembly assembly, string resourceFileName, Encoding encoding = null)
+        public string GetEmbeddedResourceString(Assembly assembly, string resourceFileName, Encoding? encoding = null)
         {
             var stream = this.GetEmbeddedResourceStream(assembly, resourceFileName);
 
@@ -100,7 +100,7 @@ namespace System.Reflection
             }
         }
 
-        public IEnumerable<string> GetEmbeddedResourceStrings(Assembly assembly, string resourceFileName, Encoding encoding = null)
+        public IEnumerable<string> GetEmbeddedResourceStrings(Assembly assembly, string resourceFileName, Encoding? encoding = null)
         {
             var streams = this.GetEmbeddedResourceStreams(assembly, resourceFileName);
 
