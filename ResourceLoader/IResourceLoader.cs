@@ -6,6 +6,13 @@ namespace System.Reflection
 {
     public interface IResourceLoader
     {
+#if NETSTANDARD2_1_OR_GREATER
+        /// <summary>
+        /// Gets the singleton instance of <see cref="IResourceLoader"/>.
+        /// </summary>
+        public static IResourceLoader Current { get; } = ResourceLoader.Current;
+#endif
+
         IEnumerable<string> GetEmbeddedResourceNames(Assembly assembly);
 
         /// <summary>
