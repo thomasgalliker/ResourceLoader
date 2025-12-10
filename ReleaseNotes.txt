@@ -1,0 +1,36 @@
+3.4
+- Add support for nullable reference types.
+- Maintenance updates.
+
+3.3
+- Maintenance updates.
+
+3.2
+- Maintenance updates.
+
+3.1
+- Maintenance updates.
+
+3.0
+- Add support for .NET Standard.
+
+2.0.6
+- Added assembly versioning.
+
+2.0.5
+- Added new methods to IResourceLoader to find multiple resources matching the given file pattern.
+      
+2.0.3
+- Added text encoding parameter to GetEmbeddedResourceString.
+      
+2.0.2
+- New exception of type MultipleResourcesFoundException if more than one resource matches the given name.
+- New exception of type ResourceNotFoundException if resource could not be found.
+
+2.0.0
+- Refactored to provide non-static implementation of ResourceLoader.
+- New IResourceLoader interface as abstraction for ResourceLoader.
+- Static access to IResourceLoader via ResourceLoader.Current.
+
+1.0.2
+- Initial release.
