@@ -7,4 +7,13 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="EmbeddedResources\**\*.xml" />
+    <EmbeddedResource Include="EmbeddedResources\**\*.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\ResourceLoader\ResourceLoader.csproj" />
+  </ItemGroup>
+
 </Project>
