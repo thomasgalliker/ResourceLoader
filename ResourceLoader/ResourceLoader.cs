@@ -1,9 +1,5 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection.Exceptions;
+﻿using System.Reflection.Exceptions;
 using System.Text;
-using System.Threading;
 
 namespace System.Reflection
 {
@@ -16,10 +12,7 @@ namespace System.Reflection
 
         public static IResourceLoader Current
         {
-            get
-            {
-                return Implementation.Value;
-            }
+            get => Implementation.Value;
         }
 
         static IResourceLoader CreateResourceLoader()

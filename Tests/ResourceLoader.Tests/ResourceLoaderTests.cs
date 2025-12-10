@@ -18,12 +18,12 @@ namespace System.Reflection.Tests
             var testAssembly = this.GetType().GetTypeInfo().Assembly;
 
             // Act
-            var embeddedResourceNames = ResourceLoader.Current.GetEmbeddedResourceNames(testAssembly);
+            var embeddedResourceNames = IResourceLoader.Current.GetEmbeddedResourceNames(testAssembly);
 
             // Assert
             embeddedResourceNames.Should().NotBeNull();
         }
-        
+
         [Fact]
         public void ShouldGetEmbeddedResourceStream()
         {
@@ -32,7 +32,7 @@ namespace System.Reflection.Tests
             var testFile = "XMLFile1.xml";
 
             // Act
-            var embeddedResourceStream = ResourceLoader.Current.GetEmbeddedResourceStream(testAssembly, testFile);
+            var embeddedResourceStream = IResourceLoader.Current.GetEmbeddedResourceStream(testAssembly, testFile);
 
             // Assert
             embeddedResourceStream.Should().NotBeNull();
@@ -46,7 +46,7 @@ namespace System.Reflection.Tests
             var filePattern = "XMLFile";
 
             // Act
-            var embeddedResourceStreams = ResourceLoader.Current.GetEmbeddedResourceStreams(testAssembly, filePattern);
+            var embeddedResourceStreams = IResourceLoader.Current.GetEmbeddedResourceStreams(testAssembly, filePattern);
 
             // Assert
             embeddedResourceStreams.Should().NotBeNull();
@@ -199,7 +199,7 @@ namespace System.Reflection.Tests
         public void ShouldReturnStaticResourceLoader()
         {
             // Act
-            var resourceLoader = ResourceLoader.Current;
+            var resourceLoader = IResourceLoader.Current;
 
             // Assert
             resourceLoader.Should().NotBeNull();
