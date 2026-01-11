@@ -1,15 +1,20 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Text;
+﻿using System.Text;
 
 namespace System.Reflection
 {
     public interface IResourceLoader
     {
+#if NETSTANDARD2_1_OR_GREATER
+        /// <summary>
+        /// Gets the singleton instance of <see cref="IResourceLoader"/>.
+        /// </summary>
+        public static IResourceLoader Current { get; } = ResourceLoader.Current;
+#endif
+
         IEnumerable<string> GetEmbeddedResourceNames(Assembly assembly);
 
         /// <summary>
-        ///     Attempts to find and return the given resource from within the specified assembly.
+        /// Attempts to find and return the given resource from within the specified assembly.
         /// </summary>
         /// <returns>The embedded resource stream.</returns>
         /// <param name="assembly">The assembly which embeds the resource.</param>
@@ -17,7 +22,7 @@ namespace System.Reflection
         Stream GetEmbeddedResourceStream(Assembly assembly, string resourceFileName);
 
         /// <summary>
-        ///     Attempts to find and return resources from within the specified assembly that match the given file pattern.
+        /// Attempts to find and return resources from within the specified assembly that match the given file pattern.
         /// </summary>
         /// <returns>The embedded resource as streams.</returns>
         /// <param name="assembly">The assembly which embeds the resource.</param>
@@ -25,7 +30,7 @@ namespace System.Reflection
         IEnumerable<Stream> GetEmbeddedResourceStreams(Assembly assembly, string filePattern);
 
         /// <summary>
-        ///     Attempts to find and return the given resource from within the specified assembly.
+        /// Attempts to find and return the given resource from within the specified assembly.
         /// </summary>
         /// <returns>The embedded resource as a byte array.</returns>
         /// <param name="assembly">Assembly.</param>
@@ -33,7 +38,7 @@ namespace System.Reflection
         byte[] GetEmbeddedResourceByteArray(Assembly assembly, string resourceFileName);
 
         /// <summary>
-        ///     Attempts to find and return the resources from within the specified assembly that match the given file pattern.
+        /// Attempts to find and return the resources from within the specified assembly that match the given file pattern.
         /// </summary>
         /// <returns>The embedded resources as byte arrays.</returns>
         /// <param name="assembly">Assembly.</param>
@@ -41,21 +46,21 @@ namespace System.Reflection
         IEnumerable<byte[]> GetEmbeddedResourceByteArrays(Assembly assembly, string resourceFileName);
 
         /// <summary>
-        ///     Attempts to find and return the given resource from within the specified assembly.
+        /// Attempts to find and return the given resource from within the specified assembly.
         /// </summary>
         /// <returns>The embedded resource as a string.</returns>
         /// <param name="assembly">The assembly which embeds the resource.</param>
         /// <param name="resourceFileName">Resource file name.</param>
         /// <param name="encoding">Character encoding. Default is UTF8.</param>
-        string GetEmbeddedResourceString(Assembly assembly, string resourceFileName, Encoding encoding = null);
+        string GetEmbeddedResourceString(Assembly assembly, string resourceFileName, Encoding? encoding = null);
 
         /// <summary>
-        ///     Attempts to find and return the resources from within the specified assembly that match the given file pattern.
+        /// Attempts to find and return the resources from within the specified assembly that match the given file pattern.
         /// </summary>
         /// <returns>The embedded resources as strings.</returns>
         /// <param name="assembly">The assembly which embeds the resource.</param>
         /// <param name="filePattern">Resource file pattern.</param>
         /// <param name="encoding">Character encoding. Default is UTF8.</param>
-        IEnumerable<string> GetEmbeddedResourceStrings(Assembly assembly, string filePattern, Encoding encoding = null);
+        IEnumerable<string> GetEmbeddedResourceStrings(Assembly assembly, string filePattern, Encoding? encoding = null);
     }
 }
