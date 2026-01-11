@@ -1,9 +1,5 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection.Exceptions;
+﻿using System.Reflection.Exceptions;
 using System.Text;
-using System.Threading;
 
 namespace System.Reflection
 {
@@ -16,10 +12,7 @@ namespace System.Reflection
 
         public static IResourceLoader Current
         {
-            get
-            {
-                return Implementation.Value;
-            }
+            get => Implementation.Value;
         }
 
         static IResourceLoader CreateResourceLoader()
@@ -88,7 +81,7 @@ namespace System.Reflection
             }
         }
 
-        public string GetEmbeddedResourceString(Assembly assembly, string resourceFileName, Encoding encoding = null)
+        public string GetEmbeddedResourceString(Assembly assembly, string resourceFileName, Encoding? encoding = null)
         {
             var stream = this.GetEmbeddedResourceStream(assembly, resourceFileName);
 
@@ -100,7 +93,7 @@ namespace System.Reflection
             }
         }
 
-        public IEnumerable<string> GetEmbeddedResourceStrings(Assembly assembly, string resourceFileName, Encoding encoding = null)
+        public IEnumerable<string> GetEmbeddedResourceStrings(Assembly assembly, string resourceFileName, Encoding? encoding = null)
         {
             var streams = this.GetEmbeddedResourceStreams(assembly, resourceFileName);
 
